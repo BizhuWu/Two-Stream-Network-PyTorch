@@ -12,22 +12,23 @@ MOMENTUM = 0.9
 SAVE_INTERVAL = 500
 
 
+
 if torch.cuda.is_available():
     device = torch.device('cuda')
 else:
     device = torch.device('cpu')
 
 
+    
 twoStreamNet = TwoStreamNet().to(device)
+
+
 
 optimizer = optim.SGD(
     params=twoStreamNet.parameters(),
     lr=LEARNING_RATE,
     momentum=MOMENTUM
 )
-
-
-# vis = visdom.Visdom(server='http://127.0.0.1', port=8097)
 
 
 
@@ -38,13 +39,9 @@ def save_checkpoint(path, model, optimizer):
     }
     torch.save(state, path)
 
+    
 
 def train(epoch, save_interval):
-    x_loss, y_loss = 0, 0
-    # win_loss = vis.line(X=np.array([x_loss]), Y=np.array([y_loss]), opts=(dict(title='loss')))
-    x_acc, y_acc = 0, 0
-    # win_Acc = vis.line(X=np.array([x_acc]), Y=np.array([y_acc]), opts=(dict(title='Accuracy')))
-
     iteration = 0
     twoStreamNet.train()
 
@@ -69,20 +66,16 @@ def train(epoch, save_interval):
 
             iteration += 1
 
-            x_loss += 1
-            # vis.line(X=np.array([x_loss]), Y=np.array([loss.item()]), win=win_loss, update='append')
-
             print("Loss: " + str(loss.item()))
             with open('log.txt', 'a') as f:
                 f.write("Epoch " + str(i+1) + ", Iteration " + str(index+1) + "'s Loss: " + str(loss.item()) + "\n")
 
-        x_acc += 1
-        test(x_acc, None)
+        test(i)
 
     save_checkpoint('model/checkpoint-%i.pth' % iteration, twoStreamNet, optimizer)
 
 
-def test(x_acc, win_Acc):
+def test(i_epoch):
 
     twoStreamNet.eval()
 
@@ -101,11 +94,9 @@ def test(x_acc, win_Acc):
             max_value, max_index = output.max(1, keepdim=True)
             correct += max_index.eq(label.view_as(max_index)).sum().item()
 
-    # vis.line(X=np.array([x_acc]), Y=np.array([correct*1.0*100/len(testset_loader.dataset)]), win=win_Acc, update='append')
-
     print("Accuracy: " + str(correct*1.0*100/len(testset_loader.dataset)))
     with open('log.txt', 'a') as f:
-        f.write("Epoch " + str(x_acc) + "'s Accuracy: " + str(correct*1.0*100/len(testset_loader.dataset)) + "\n")
+        f.write("Epoch " + str(i_epoch) + "'s Accuracy: " + str(correct*1.0*100/len(testset_loader.dataset)) + "\n")
 
 if __name__ == '__main__':
     train(EPOCH, SAVE_INTERVAL)
