@@ -11,7 +11,7 @@ Stream     | Accuracy
 :-----------:|:-----------:
 RGB  | -
 Optical Flow  | -
-Fusion (Two Stream)  | 73.53% (only stack 4 optical flow images：2 x_direction 2 y_direction)
+Fusion (Two Stream)  | **`73.53%`** (only stack 4 optical flow images：2 x_direction 2 y_direction)
 
 &nbsp;
 
