@@ -45,6 +45,7 @@ downloading processed data：[Link](https://pan.baidu.com/s/1RH62JS04nqo6URTojvD
 
 
 ## Train
+Before training, you should new a directory named **`model`** to save checkpoint file.
 ```python
 python3 trainTwoStreamNet.py
 ```
