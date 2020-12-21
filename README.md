@@ -29,8 +29,12 @@ Fusion (Two Stream)  | **`73.53%`** (only stack 4 optical flow images：2 x_dire
 
 
 ## Data Preparation
+### The First Way
 Original Dataset：[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)
 
+or
+
+### The Second Way
 By the way, I write a matlab code to generate the **optical flow** images and the **RGB** images.
 
 + For the **optical flow** images, I call the **`Horn–Schunck Algorithm`** function in matlab to calculate it. The video frame interval for calculating the optical flow images is set to **`2`** to generate sufficient data.
@@ -40,6 +44,15 @@ By the way, I write a matlab code to generate the **optical flow** images and th
 Generating Data Code (Matlab)：[calOpticalFlow.m](https://github.com/BizhuWu/Two-Stream-Network-PyTorch/blob/main/calOpticalFlow.m)
 
 downloading processed data：[Link](https://pan.baidu.com/s/1RH62JS04nqo6URTojvDnCA) password：rhf1 
+
+After downloading processed data, you should unrar the **`processedData.rar`** and build a directory named **`data`**
+```
+Project
+│--- data
+│------ RGB
+│------ OpticalFlow
+│--- other files
+```
 
 &nbsp;
 
