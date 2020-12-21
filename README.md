@@ -1,6 +1,8 @@
 # Two-Stream Network implemented in PyTorch
 Paper's Link：[Two-Stream Convolutional Networks for Action Recognition](https://arxiv.org/pdf/1604.06573.pdf)
 
+The backbone of each stream is **`ResNet 50`**
+
 &nbsp;
 
 
@@ -9,7 +11,7 @@ Stream     | Accuracy
 :-----------:|:-----------:
 RGB  | -
 Optical Flow  | -
-Fusion (Two Stream)  | -
+Fusion (Two Stream)  | 73.53% (only stack 4 optical flow images：2 x_direction 2 y_direction)
 
 &nbsp;
 
@@ -31,13 +33,13 @@ Original Dataset：[UCF101](https://www.crcv.ucf.edu/data/UCF101.php)
 
 By the way, I write a matlab code to generate the **optical flow** images and the **RGB** images.
 
-For the **optical flow** images, I call the **`Horn–Schunck Algorithm`** function in matlab to calculate it. 
++ For the **optical flow** images, I call the **`Horn–Schunck Algorithm`** function in matlab to calculate it. The video frame interval for calculating the optical flow images is set to **`2`** to generate sufficient data.
 
-The video frame interval for calculating the optical flow images is set to **`2`** to generate sufficient data.
++ For the **RGB** images, I just randomly sampled **`one`** single frame from each video.
 
-[Generating Data (Matlab Code)：]()
+Generating Data Code (Matlab)：[Link]()
 
-[downloading processed data：]()
+downloading processed data：[Link](https://pan.baidu.com/s/1RH62JS04nqo6URTojvDnCA) password：rhf1 
 
 &nbsp;
 
