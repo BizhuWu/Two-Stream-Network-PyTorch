@@ -1,8 +1,10 @@
 UCF101_dir_path = 'Your_Path\UCF-101';
 UCF101_dir = dir(UCF101_dir_path);
 
+% dir used to save the RGB images & the optical flow images
 RGB_Dir_Path= 'Your_Path\RGB\';
 OpticalFlow_Dir_Path= 'Your_Path\OpticalFlow\';
+
 save_interval = 2;
 
 % the first one is '.'; the second one is '..'
