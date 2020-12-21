@@ -1,6 +1,7 @@
 # Two-Stream Network implemented in PyTorch
 Paper's Link：[Two-Stream Convolutional Networks for Action Recognition](https://arxiv.org/pdf/1604.06573.pdf)
 
+&nbsp;
 
 
 ## Performance
@@ -10,6 +11,7 @@ RGB  | -
 Optical Flow  | -
 Fusion (Two Stream)  | -
 
+&nbsp;
 
 
 ## Training Environment
@@ -21,6 +23,7 @@ Fusion (Two Stream)  | -
 + pillow 8.0.1
 + python 3.6.12
 
+&nbsp;
 
 
 ## Data Preparation
@@ -36,11 +39,14 @@ The video frame interval for calculating the optical flow images is set to **`2`
 
 [downloading processed data：]()
 
+&nbsp;
 
 
 ## Train
-> python3 trainTwoStreamNet.py
-
+```python
+python3 trainTwoStreamNet.py
+```
+&nbsp;
 
 
 ## Problems
