@@ -45,7 +45,7 @@ class UCF101Data(Dataset):  # define a class named MNIST
     # read all pictures' filename
     def __init__(self, RBG_root, OpticalFlow_root, isTrain, transform=None):
         # root: Dataset's filepath
-        # classInd: dictionary (1 -> ApplyEyeMakeup）
+        # classInd: dictionary (1 -> ApplyEyeMakeup)
         self.filenames = []
         self.transform = transform
 
@@ -69,20 +69,25 @@ class UCF101Data(Dataset):  # define a class named MNIST
                     # load Optical Flow data
                     frame_list = os.listdir(single_OpticalFlow_video_path)
                     frame_list.sort(key=lambda x:int(x.split("_")[-2]))
-                    # train all clips from each video (step = 2, because the images are x_1,y_1,x_2,y_2,...)
-                    for k in range(0, len(frame_list) - SAMPLE_FRAME_NUM * 2 + 1, 2):
-                        stacked_OpticalFlow_image_path = []
-                        for j in range(k, k + SAMPLE_FRAME_NUM * 2):
-                            OpticalFlow_image_path = single_OpticalFlow_video_path + '/' + frame_list[j]
-                            stacked_OpticalFlow_image_path.append(OpticalFlow_image_path)
+                    # generate a random frame idx (Notes: it must start from x)
+                    ran_frame_idx = np.random.randint(0, len(frame_list) - SAMPLE_FRAME_NUM * 2 + 1)
+                    while ran_frame_idx % 2 != 0:
+                        ran_frame_idx = np.random.randint(0, len(frame_list) - SAMPLE_FRAME_NUM * 2 + 1)
 
-                        # load RGB data
-                        RGB_image_path = str()
-                        for image_fileName in os.listdir(signel_RGB_video_path):
-                            RGB_image_path = signel_RGB_video_path + '/' + image_fileName
+                    stacked_OpticalFlow_image_path = []
+                    for j in range(ran_frame_idx, ran_frame_idx + SAMPLE_FRAME_NUM * 2):
+                        OpticalFlow_image_path = single_OpticalFlow_video_path + '/' + frame_list[j]
+                        stacked_OpticalFlow_image_path.append(OpticalFlow_image_path)
 
-                        # (RGB_image_path, stacked_OpticalFlow_image_path, label)
-                        self.filenames.append((RGB_image_path, stacked_OpticalFlow_image_path, i))
+
+                    # load RGB data
+                    RGB_image_path = str()
+                    for image_fileName in os.listdir(signel_RGB_video_path):
+                        RGB_image_path = signel_RGB_video_path + '/' + image_fileName
+
+
+                    # (RGB_image_path, stacked_OpticalFlow_image_path, label)
+                    self.filenames.append((RGB_image_path, stacked_OpticalFlow_image_path, i))
 
         self.len = len(self.filenames)
 
@@ -150,7 +155,6 @@ trainset_loader = DataLoader(
     shuffle=True,
     num_workers=0
 )
-# print(trainset)
 
 
 
@@ -169,4 +173,3 @@ testset_loader = DataLoader(
     shuffle=False,
     num_workers=0
 )
-# print(testset)
