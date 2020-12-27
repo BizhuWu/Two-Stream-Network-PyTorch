@@ -1,7 +1,7 @@
 # Two-Stream Network implemented in PyTorch
 Paper's Link：[Two-Stream Convolutional Networks for Action Recognition](https://arxiv.org/pdf/1604.06573.pdf)
 
-The backbone of each stream is **`ResNet 50`**
+The backbone of each stream is **`ResNet-50`**
 
 &nbsp;
 
@@ -61,6 +61,33 @@ Project
 Before training, you should new a directory named **`model`** to save checkpoint file.
 ```python
 python3 trainTwoStreamNet.py
+```
+&nbsp;
+
+
+## demo
+This is a demo video for test. I randomly set the **`test_video_id = 1000`** from **`testset`** to run this demo python file.
+
+
+You can change the **`test_video_id`** at here:
+```python
+# set the test video id in testset
+test_video_id = 1000
+print('Video Name:', LoadUCF101Data.TestVideoNameList[test_video_id])
+```
+run **`demo.py`** file
+```python
+CUDA_VISIBLE_DEVICES=0 python3 demo.py
+```
+output:
+
+![demo_RGB](https://github.com/BizhuWu/Two-Stream-Network-PyTorch/blob/main/demo_RGB.png)
+
+![demo_stackedOpticalFlowImg](https://github.com/BizhuWu/Two-Stream-Network-PyTorch/blob/main/demo_opticalFlowStackedImgs.png)
+```
+Video Name: v_Drumming_g01_c05
+actual class is Drumming
+predicted class is Drumming , probability is 99.9534
 ```
 &nbsp;
 
