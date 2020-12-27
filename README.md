@@ -66,8 +66,7 @@ python3 trainTwoStreamNet.py
 
 
 ## demo
-This is a demo video for test. I randomly set the **`test_video_id = 1000`** from **`testset`** to run this demo python file.
-
+This is a demo video for test. I randomly set the **`test_video_id = 1000`** from **`testset`** to run this demo python file. What's more, I use the checkpoint file saved in **`9000-th`** iteration as the demo model.
 
 You can change the **`test_video_id`** at here:
 ```python
@@ -75,6 +74,14 @@ You can change the **`test_video_id`** at here:
 test_video_id = 1000
 print('Video Name:', LoadUCF101Data.TestVideoNameList[test_video_id])
 ```
+
+You can change the **`checkpoint_file_path`** at here:
+```python
+# load the chekpoint file
+state = torch.load('model/checkpoint-9000.pth')
+twoStreamNet.load_state_dict(state['model'])
+```
+
 run **`demo.py`** file
 ```python
 CUDA_VISIBLE_DEVICES=0 python3 demo.py
