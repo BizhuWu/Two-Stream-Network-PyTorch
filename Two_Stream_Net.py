@@ -8,7 +8,7 @@ class OpticalFlowStreamNet(nn.Module):
     def __init__(self):
         super(OpticalFlowStreamNet, self).__init__()
 
-        self.OpticalFlow_stream = models.resnet50(pretrained=True)
+        self.OpticalFlow_stream = models.resnet50()
         self.OpticalFlow_stream.conv1 = nn.Conv2d(LoadUCF101Data.SAMPLE_FRAME_NUM * 2, 64, kernel_size=7, stride=2, padding=3,bias=False)
         self.OpticalFlow_stream.fc = nn.Linear(in_features=2048, out_features=101)
 
