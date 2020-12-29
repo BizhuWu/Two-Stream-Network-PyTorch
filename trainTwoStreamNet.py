@@ -70,7 +70,7 @@ def train(epoch, save_interval):
             with open('log.txt', 'a') as f:
                 f.write("Epoch " + str(i+1) + ", Iteration " + str(index+1) + "'s Loss: " + str(loss.item()) + "\n")
 
-        test(i)
+        test(i+1)
 
     save_checkpoint('model/checkpoint-%i.pth' % iteration, twoStreamNet, optimizer)
 
