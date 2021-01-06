@@ -43,7 +43,7 @@ By the way, I write a matlab code to generate the **optical flow** images and th
 
 Generating Data Code (Matlab)：[calOpticalFlow.m](https://github.com/BizhuWu/Two-Stream-Network-PyTorch/blob/main/calOpticalFlow.m)
 
-downloading processed data：[Link](https://pan.baidu.com/s/1RH62JS04nqo6URTojvDnCA) password：rhf1 
+downloading processed data：[Link](https://pan.baidu.com/s/1AV0Bp7nt17QKTHM8KUiROA) password：peyu
 
 After downloading processed data, you should unrar the **`processedData.rar`** and build a directory named **`data`**
 ```
