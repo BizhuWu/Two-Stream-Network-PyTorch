@@ -43,9 +43,10 @@ def save_checkpoint(path, model, optimizer):
 
 def train(epoch, save_interval):
     iteration = 0
-    twoStreamNet.train()
 
     for i in range(epoch):
+        twoStreamNet.train()
+        
         for index, data in enumerate(trainset_loader):
             RGB_images, OpticalFlow_images, label = data
 
